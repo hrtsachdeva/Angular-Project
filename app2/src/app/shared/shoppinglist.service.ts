@@ -4,6 +4,7 @@ import { EventEmitter } from '@angular/core';
 
 export class ShoppingListService {
   listRefresh = new EventEmitter<Ingredient[]>();
+  startedEditing = new EventEmitter<number>();
    private ingredients: Ingredient[] = [
     new Ingredient('apple', 5 ) ,
     new Ingredient('mango', 10)
@@ -18,8 +19,11 @@ export class ShoppingListService {
   addIngredientarray(ingre: Ingredient[]) {
     for (const item of ingre) {
       this.ingredients.push(item);
-      alert(item.name);
     }
 
   }
+  getIngredientByIndex(index: number) {
+    return this.ingredients[index];
+  }
+
 }

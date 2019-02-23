@@ -10,10 +10,24 @@ import { NgForm } from '@angular/forms';
 })
 export class ShoppingListEditComponent implements OnInit {
   details: Ingredient;
+  editMode = false;
+  editedItemIndex: number ;
+  editedItem: Ingredient;
   constructor(private shoppinglistservice: ShoppingListService) { }
   @Output() itemDetails = new EventEmitter<Ingredient>();
   @ViewChild('f') form_ele: NgForm;
   ngOnInit() {
+    this.shoppinglistservice.startedEditing.subscribe(
+      (index: number) => {
+      this.editMode = true;
+      this.editedItemIndex = index;
+      this.editedItem = this.shoppinglistservice.getIngredientByIndex(index);
+      this.form_ele.setValue({
+        name: this.editedItem.name,
+        amount: this.editedItem.amount
+      });
+      }
+    );
   }
 
   listAdd(form: NgForm) {
