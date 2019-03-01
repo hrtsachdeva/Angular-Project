@@ -1,7 +1,8 @@
 import { Recipe } from '../recipes/recipe.model';
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Ingredient } from './ingredient.model';
 
+@Injectable()
 export class RecipeService {
 
   recipeSelected = new EventEmitter<Recipe>();
@@ -41,5 +42,10 @@ export class RecipeService {
     this.recipes.splice(index, 1);
     this.recipeChanged.emit(this.recipes.slice());
 
+  }
+
+  addHttpRecipe(recipe: Recipe[]) {
+    this.recipes = recipe;
+    this.recipeChanged.emit(this.recipes.slice());
   }
 }

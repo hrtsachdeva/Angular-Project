@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpModule } from '@angular/http';
 
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { DropdownDirective } from '../app/shared/dropdown.directive';
@@ -17,6 +17,8 @@ import { RecipeDetailsComponent } from './recipes/recipe-details/recipe-details.
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ShoppingListEditComponent } from './shopping-list/shopping-list-edit/shopping-list-edit.component';
 import { RecipeService } from './shared/recipe.service';
+import { DataStorageService } from './shared/data-storage.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,9 +37,11 @@ import { RecipeService } from './shared/recipe.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+// tslint:disable-next-line: deprecation
+    HttpModule
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
 import { Ingredient } from './ingredient.model';
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
-
+@Injectable()
 export class ShoppingListService {
   listRefresh = new EventEmitter<Ingredient[]>();
   startedEditing = new EventEmitter<number>();
